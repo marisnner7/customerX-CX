@@ -19,9 +19,17 @@ puts "Creating Customers"
   customer = Customer.new(
     name: Faker::Name.name,
     telephone: Faker::PhoneNumber.cell_phone_in_e164,
-    register_day: Faker::Date.in_date_period(month: 2)
+    register_day: Faker::Date.in_date_period(month: 2),
+    email: Faker::Internet.email,
+    password: "12345678"
+
   ) 
   customer.save!
 end
+
+puts "Creating contacts"
+
+#contact = Contact.create!({ name: "Flor de Jamaica", emails: "Herbal organic tea", customer_id: customer.id})
+
 
 puts 'Finished!'
