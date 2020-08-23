@@ -1,0 +1,7 @@
+<%= simple_form_for [ @customer, @contact ] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :emails %>
+  <%= f.input :cellphone %>
+
+  <%= f.submit "Submit contact", class: "btn btn-primary" %>
+<% end %>

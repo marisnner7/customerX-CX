@@ -1,0 +1,40 @@
+ <h1><%= @customer.name %></h1>
+   
+
+      <h2>Telephone</h2>
+      <p><%= @customer.telephone %></p>
+        <p><%= @customer.email %></p>
+
+        <h3>Register Day</h3>
+        <p><%= @customer.register_day %></p>
+        
+        <%= link_to edit_customer_path(@customer) do %>
+          <i class="far fa-edit"></i>
+        <% end %>
+
+
+
+<%= link_to "Delete #{@customer.name}",
+            customer_path(@customer),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+            
+
+                          <i class="fas fa-trash"></i>
+
+          <%= link_to 'Create more contacts', new_customer_contact_path(@customer) %>
+                
+
+
+<ul class="list-group">
+  <% @customer.contacts.each do |contact| %>
+    <li class="list-group-item"><%= contact.name  %></li>   
+    <%= contact.cellphone %>
+       <%= contact.emails %>
+
+
+  <% end %>
+</ul>
+
+
+  <%= link_to 'Back to HomePage', root_path , class:'btn btn-secondary' %>
