@@ -1,10 +1,5 @@
 class CustomersController < ApplicationController
-  
-  before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  
-  def index
-    @customers = Customer.all
-  end
+  before_action :set_customer, only: %i[show edit update destroy]
 
   def new
     @customer = Customer.new
@@ -21,13 +16,13 @@ class CustomersController < ApplicationController
   end
 
   def edit
-    
+  
   end
 
   def update
     @customer.update(customer_params)
 
-    redirect_to customer_path,  notice: 'customer was successfully updated.'
+    redirect_to customer_path, notice: 'customer was successfully updated.'
   end
 
   def destroy
@@ -36,10 +31,9 @@ class CustomersController < ApplicationController
   end
 
   private
-  
+
   def customer_params
     params.require(:customer).permit(:name, :telephone, :email, :register_day)
-    
   end
 
   def set_customer
