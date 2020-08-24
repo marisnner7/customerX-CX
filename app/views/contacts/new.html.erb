@@ -1,7 +1,4 @@
-<%= simple_form_for [ @customer, @contact ] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :emails %>
-  <%= f.input :cellphone %>
-
-  <%= f.submit "Submit contact", class: "btn btn-primary" %>
-<% end %>
+<div class="container">
+<h1>Create a review</h1>
+<%= render 'form', customer: @customer, contact: @contact %>
+</div>
