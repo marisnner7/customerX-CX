@@ -1,16 +1,21 @@
- <h1><%= @customer.name %></h1>
+ <div class="customer-name">
+  <h1><%= @customer.name %></h1>
+
+  <h2>Telephone</h2>
+  <p><%= @customer.telephone %></p>
+  <p><%= @customer.email %></p>
+
+  <h3>Register Day</h3>
+  <p><%= @customer.register_day %></p>
+  
+  <%= link_to edit_customer_path(@customer) do %>
+    <i class="far fa-edit"></i>
+  <% end %>
+ 
+ </div>
+
+   </li>
    
-
-      <h2>Telephone</h2>
-      <p><%= @customer.telephone %></p>
-        <p><%= @customer.email %></p>
-
-        <h3>Register Day</h3>
-        <p><%= @customer.register_day %></p>
-        
-        <%= link_to edit_customer_path(@customer) do %>
-          <i class="far fa-edit"></i>
-        <% end %>
 
 
 
@@ -25,16 +30,34 @@
           <%= link_to 'Create more contacts', new_customer_contact_path(@customer) %>
                 
 
+    <div class="cards-contact">
+      <div class="card" style="width: 18rem;">
+        <% @customer.contacts.each do |contact| %>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= contact.name  %></li>   
+          <li class="list-group-item"><%= contact.cellphone %></li>
+          <li class="list-group-item"><%= contact.emails %></li>
+        </ul>
 
-<ul class="list-group">
-  <% @customer.contacts.each do |contact| %>
-    <li class="list-group-item"><%= contact.name  %></li>   
-    <%= contact.cellphone %>
-       <%= contact.emails %>
+          <%= link_to edit_customer_contact_path(@customer) do %>
+            <i class="far fa-edit"></i>
+          <% end %>
 
 
-  <% end %>
-</ul>
+      <%= link_to "Remove",
+                  contact_path(contact),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+        <% end %>
+      </div>
+    </div>
 
+    
+
+  
+      
+      
+
+    
 
   <%= link_to 'Back to HomePage', root_path , class:'btn btn-secondary' %>
