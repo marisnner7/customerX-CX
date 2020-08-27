@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
-  validates :name, :email, presence: true
+  validates :email, presence: true
 
   has_many :contacts, dependent: :destroy
   devise :database_authenticatable, :registerable,
