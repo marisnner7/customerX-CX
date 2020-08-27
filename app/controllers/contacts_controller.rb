@@ -5,6 +5,10 @@ class ContactsController < ApplicationController
   @contacts = Contact.all
   end 
 
+  def index
+    @contacts = Contact.all
+  end  
+  
   def new
   # we need @customer in our `simple_form_for`
     @customer = Customer.find(params[:customer_id])
