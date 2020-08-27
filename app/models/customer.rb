@@ -1,9 +1,33 @@
 class Customer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-  has_many :contacts, dependent: :destroy
+  include PgSearch::Model
+  multisearchable against: [:name, :email, :telephone]
 
-  validates :name, :telephone, :register_day, presence: true
+
+  has_many :contacts, dependent: :destroy
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:facebook]
+
+         def self.find_for_facebook_oauth(auth)
+          customer_params = auth.slice("provider", "uid")
+          customer_params.merge! auth.info.slice("email", "first_name", "last_name")
+          customer_params[:facebook_picture_url] = auth.info.image
+          customer_params[:token] = auth.credentials.token
+          customer_params[:token_expiry] = Time.at(auth.credentials.expires_at)
+          customer_params = customer_params.to_h
+      
+          customer = Customer.find_by(provider: auth.provider, uid: auth.uid)
+    customer ||= Customer.find_by(email: auth.info.email) # Customer did a regular sign up in the past.
+          if customer
+            customer.update(customer_params)
+          else
+            customer = Customer.new(customer_params)
+            customer.password = Devise.friendly_token[0,20]  # Fake password for validation
+            customer.save
+          end
+      
+          return customer
+        end
 end
