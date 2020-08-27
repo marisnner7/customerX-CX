@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   resources :customers, except: [:index] do
     resources :contacts, only: %i[new create edit]
   end
-  resources :contacts, only: %i[show update destroy]
+  resources :contacts, only: %i[index show update destroy]
 end
