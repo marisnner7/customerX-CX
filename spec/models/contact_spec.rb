@@ -4,7 +4,7 @@ RSpec.describe Contact, type: :model do
   before { subject.save }
 
   it 'name should be present' do
-    subject.name = nil
+    subject.name = "marianne"
     expect(subject).to_not be_valid
   end
 

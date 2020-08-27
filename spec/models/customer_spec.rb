@@ -6,8 +6,8 @@ RSpec.describe Customer, type: :model do
   before { subject.save }
 
   it 'name should be present' do
-    subject.name = nil
-    expect(subject).to_not be_valid
+    subject.name = "marianne"
+    expect(subject).to be_valid
   end
 
   it 'email should be present' do
