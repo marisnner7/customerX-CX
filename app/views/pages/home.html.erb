@@ -1,7 +1,8 @@
-<h1>Bem vindo</h1>
+<h1>Welcome to Customer List</h1>
 
 <ul>
   <% @customers.each do |customer| %>
     <li><%= link_to customer.name, customer_path(customer) %></li>
   <% end %>
 </ul>
+
