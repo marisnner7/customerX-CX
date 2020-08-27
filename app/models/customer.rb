@@ -2,9 +2,14 @@ class Customer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   include PgSearch::Model
-  multisearchable against: [:name, :email, :telephone]
 
-
+  pg_search_scope :search_by_name_and_email,
+    against: [ :name, :email ],
+    using: {
+      tsearch: { prefix: true } 
+    }
+  validates :name, :email, presence: true
+  
   has_many :contacts, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,

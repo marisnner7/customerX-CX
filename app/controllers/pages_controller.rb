@@ -4,7 +4,7 @@ class PagesController < ApplicationController
     @customers = Customer.all
 
     if params[:query].present?
-      @customers = Customer.multisearchable(params[:query])
+      @customers = Customer.search_by_name_and_email(params[:query])
     else
       @customers = Customer.all
     end

@@ -1,5 +1,20 @@
 <h1>Welcome to Customer List</h1>
 
+
+<%= simple_form_for :search, url: root_path, method: :get do |f| %>
+  <div class="search-form-control form-group" id='search-bar'>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a Name"
+  %>
+  <%#= submit_tag "Search", class: "btn btn-primary" %>
+  <button name="button" type="submit" class="btn btn-flat">
+    <i class="fas fa-search"></i> Search
+  </button>
+
+  </div>
+<% end %>
 <ul>
   <% @customers.each do |customer| %>
     <li><%= link_to customer.name, customer_path(customer) %></li>
