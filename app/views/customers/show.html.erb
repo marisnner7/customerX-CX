@@ -9,26 +9,30 @@
   <p><%= @customer.register_day %></p>
   
   <%= link_to edit_customer_path(@customer) do %>
-    <i class="far fa-edit"></i>
+   Edit Customer <i class="far fa-edit"></i>
   <% end %>
  
- </div>
+</div>
 
-   </li>
    
+<div class="crud-customer">
 
+  <%= link_to "Delete #{@customer.name}",
+              customer_path(@customer),
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
+              
 
-
-<%= link_to "Delete #{@customer.name}",
-            customer_path(@customer),
-            method: :delete,
-            data: { confirm: "Are you sure?" } %>
-            
-
-                          <i class="fas fa-trash"></i>
-
+                            <i class="fas fa-trash"></i>
+</div>
+<div class="create-card">
           <%= link_to 'Create more contacts', new_customer_contact_path(@customer) %>
+  <i class="fas fa-plus"></i>
+</div>
                 
+</div>
+
+<div class="remove-card">
 
     <div class="cards-contact">
       <div class="card" style="width: 18rem;">
@@ -39,7 +43,8 @@
           <li class="list-group-item"><%= contact.emails %></li>
         </ul>
 
-          <%= link_to edit_customer_contact_path(@customer) do %>
+          <%= link_to customer_contact_path(@customer) do %>
+            Edit Contacts
             <i class="far fa-edit"></i>
           <% end %>
 
@@ -48,6 +53,7 @@
                   contact_path(contact),
                   method: :delete,
                   data: { confirm: "Are you sure?" } %>
+                   <i class="fas fa-trash"></i>
         <% end %>
       </div>
     </div>
