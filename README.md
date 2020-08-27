@@ -29,7 +29,7 @@ Customer and contact list
 
 
 ## Entity Relationship Diagram (ERD)
-![alt text](app/assets/images/erd.jpeg)
+![alt text](app/assets/images/erd.png)
 
 
 ## How To Use
