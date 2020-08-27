@@ -27,6 +27,23 @@ end
 
 puts 'Creating contacts'
 
-# contact = Contact.create!({ name: "Flor de Jamaica", emails: "Herbal organic tea", customer_id: customer.id})
+Contact.create(name: 'Tamera Batz', emails: 'loise_hermiston@thiel-shields.name', cellphone: "213647558", customer_id: 1)
+Contact.create(name: 'Msgr. Clay Russel', emails: 'jessie@renner-larkin.org', cellphone: "1517118", customer_id: 11)
+Contact.create(name: 'Amb. Maria Morissette', emails: 'omar.ritchie@mann-renner.name', cellphone: "821464", customer_id: 4)
+Contact.create(name: 'Lamar Ratke', emails: 'kieth_leuschke@schroeder.com', cellphone: "434343434", customer_id: 13)
+Contact.create(name: 'Cathi Mante', emails: 'kieth_leuschke@schroeder.com', cellphone: "4343434342", customer_id: 17)
+Contact.create(name: 'Jonas Wiza', emails: 'euschke@schroeder.coma', cellphone: "721424242", customer_id: 11)
+Contact.create(name: 'Arnoldo Schmidt', emails: 'nicholas@gaylord.biz', cellphone: "75424242", customer_id: 9)
+
+# 70.times do
+#   contact = Contact.new(
+#     name: Faker::Name.name,
+#     emails: Faker::Internet.free_email,
+#     cellphone: Faker::PhoneNumber.cell_phone_with_country_code,
+#     customer_id: (0..30).to_a.sample
+#   )
+#   contact.save
+#   end 
+  
 
 puts 'Finished!'
