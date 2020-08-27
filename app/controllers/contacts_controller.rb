@@ -1,12 +1,22 @@
 class ContactsController < ApplicationController
-  
   before_action :set_contact, only: %i[destroy]
 
-  
   def new
     # we need @customer in our `simple_form_for`
     @customer = Customer.find(params[:customer_id])
     @contact = Contact.new
+  end
+
+  def edit
+    @customer = Customer.find(params[:customer_id])
+    @contact = @customer.contacts
+  end
+
+  def update
+    @customer = Customer.find(params[:customer_id])
+    @contact = @customer.contact.find(params[:id])
+    @contact.update(contact_params)
+    redirect_to contact_path, notice: 'contact was successfully updated.'
   end
 
   def create
@@ -20,19 +30,6 @@ class ContactsController < ApplicationController
       render :new
     end
   end
-  
-  def edit
-    @customer = Customer.find(params[:customer_id])
-   @contact = @customer.contacts
-
-  end
-
-  def update
-    @customer = Customer.find(params[:customer_id])
-    @contact = @customer.contact.find(params[:id])
-    @contact.update(contact_params)
-    redirect_to customer_path, notice: 'contact was successfully updated.'
-  end
 
   def destroy
     @contact.destroy
@@ -42,7 +39,7 @@ class ContactsController < ApplicationController
   private
 
   def set_contact
-     @contact = Contact.find(params[:id])
+    @contact = Contact.find(params[:id])
   end
 
   def contact_params

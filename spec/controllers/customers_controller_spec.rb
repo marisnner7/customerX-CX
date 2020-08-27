@@ -1,8 +1,8 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe CustomersController, :type => :controller do
-  describe "GET index" do
-    it "has a 200 status code" do
+RSpec.describe CustomersController, type: :controller do
+  describe 'GET index' do
+    it 'has a 200 status code' do
       get :index
       expect(response.status).to eq(200)
     end

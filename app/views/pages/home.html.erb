@@ -1,4 +1,6 @@
-<h1>Welcome to Customer List</h1>
+<p>
+  <span id="banner-typed-text"></span>
+</p>
 
 
 <%= simple_form_for :search, url: root_path, method: :get do |f| %>
@@ -21,3 +23,7 @@
   <% end %>
 </ul>
 
+<%= link_to new_customer_path, class: "my-2 my-sm-0 ml-2" do%>
+          <p> Add customer</p>
+        </div>
+<% end %>
