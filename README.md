@@ -60,4 +60,4 @@ $ rspec
 $ rails s
 ```
 
-
+Some Gem's used: pg_search, devise, faker, simple_form, font-awesome, rspec, env, should-matchers, rails-erd, rubocop
