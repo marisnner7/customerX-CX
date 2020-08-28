@@ -17,13 +17,14 @@ class ContactsController < ApplicationController
   
   def edit
     @customer = Customer.find(params[:customer_id])
-    @contact = Contact.find(params[:id])
+    @contact = @customer.contacts
   end
 
   def update
-    @contact = Contact.find(params[:id])
+    @customer = Customer.find(params[:customer_id])
+    @contact = @customer.contact.find(params[:id])
     @contact.update(contact_params)
-    redirect_to customer_path(@customer)
+    redirect_to contact_path, notice: "contact sucessfully updated"
   end  
   
   

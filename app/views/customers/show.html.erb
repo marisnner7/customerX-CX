@@ -43,11 +43,11 @@
           <li class="list-group-item"><%= contact.emails %></li>
         </ul>
 
-          <%= link_to customer_contact_path(@customer) do %>
-            Edit Contacts
-            <i class="far fa-edit"></i>
-          <% end %>
+         
 
+    <%= link_to edit_customer_path(@customer) do %>
+     Edit Contacts <i class="far fa-edit"></i>
+    <% end %>
 
       <%= link_to "Remove",
                   contact_path(contact),
