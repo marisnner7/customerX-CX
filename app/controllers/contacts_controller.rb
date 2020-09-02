@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: %i[destroy]
-  
+  before_action :set_contact, only: %i[show  destroy]
+  #before_action :set_customer
+
   def index
   @contacts = Contact.all
   end 
@@ -14,17 +15,27 @@ class ContactsController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     @contact = Contact.new
   end
+
+  def show
+    
+  end
   
   def edit
-    @customer = Customer.find(params[:customer_id])
-    @contact = @customer.contacts
+    
+    @contact = Contact.find(params[:id])
+    
   end
-
+  
   def update
-    @customer = Customer.find(params[:customer_id])
-    @contact = @customer.contact.find(params[:id])
-    @contact.update(contact_params)
-    redirect_to contact_path, notice: "contact sucessfully updated"
+
+    @contact = Contact.find(params[:id])
+    if @contact.update(contact_params)
+      redirect_to customer_path, notice: 'customer was successfully updated.'
+    else
+      render :edit
+    end
+    
+
   end  
   
   
@@ -50,6 +61,7 @@ class ContactsController < ApplicationController
   def set_contact
   @contact = Contact.find(params[:id])
   end
+
   
   def contact_params
   params.require(:contact).permit(:name, :emails, :cellphone)
