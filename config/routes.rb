@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :customers, except: [:index] do
-    resources :contacts, only: %i[new create edit update]
+    resources :contacts, only: %i[new create]
+
   end
-  resources :contacts, only: %i[index show destroy]
+  resources :contacts, only: %i[index edit update destroy]
+
 end
