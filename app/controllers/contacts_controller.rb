@@ -1,14 +1,10 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: %i[show  destroy]
+  before_action :set_contact, only: %i[show edit update destroy]
   #before_action :set_customer
 
   def index
   @contacts = Contact.all
   end 
-
-  def index
-    @contacts = Contact.all
-  end  
   
   def new
   # we need @customer in our `simple_form_for`
@@ -22,15 +18,13 @@ class ContactsController < ApplicationController
   
   def edit
     
-    @contact = Contact.find(params[:id])
     
   end
   
   def update
 
-    @contact = Contact.find(params[:id])
     if @contact.update(contact_params)
-      redirect_to customer_path, notice: 'customer was successfully updated.'
+      redirect_to contacts_path, notice: 'contact was successfully updated.'
     else
       render :edit
     end
